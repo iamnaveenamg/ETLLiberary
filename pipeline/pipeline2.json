@@ -171,12 +171,6 @@
 						"referenceName": "ds_csv",
 						"type": "DatasetReference"
 					}
-				],
-				"outputs": [
-					{
-						"referenceName": "ds_json",
-						"type": "DatasetReference"
-					}
 				]
 			}
 		],
