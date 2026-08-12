@@ -14,6 +14,10 @@
 		"ls_adlsdata_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://storagemgn.dfs.core.windows.net/"
+		},
+		"ls_github_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/"
 		}
 	},
 	"variables": {
@@ -38,6 +42,21 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ls_github')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('ls_github_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ds_csv')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -56,7 +75,7 @@
 						"fileSystem": "raw"
 					},
 					"columnDelimiter": ",",
-					"compressionCodec": "deflate",
+					"compressionCodec": null,
 					"compressionLevel": "Fastest",
 					"escapeChar": "\\",
 					"firstRowAsHeader": false,
@@ -125,6 +144,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"fileName": "SalesDataRecords.parquet",
 						"fileSystem": "demo"
 					},
 					"compressionCodec": "snappy"

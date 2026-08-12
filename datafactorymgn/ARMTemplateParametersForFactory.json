@@ -10,6 +10,9 @@
 		},
 		"ls_adlsdata_properties_typeProperties_url": {
 			"value": "https://storagemgn.dfs.core.windows.net/"
+		},
+		"ls_github_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
 		}
 	}
 }
